@@ -4,11 +4,6 @@ import PropTypes from "prop-types";
 const WelcomeScreen = (props) => {
   const {time, errorCount} = props;
 
-  WelcomeScreen.propTypes = {
-    time: PropTypes.number.isRequired,
-    errorCount: PropTypes.number.isRequired,
-  };
-
   return (
     <section className="welcome">
       <div className="welcome__logo">
@@ -24,6 +19,11 @@ const WelcomeScreen = (props) => {
       <p className="welcome__text">Удачи!</p>
     </section>
   );
+};
+
+WelcomeScreen.propTypes = {
+  time: PropTypes.number.isRequired,
+  errorCount: PropTypes.number.isRequired,
 };
 
 export default WelcomeScreen;
