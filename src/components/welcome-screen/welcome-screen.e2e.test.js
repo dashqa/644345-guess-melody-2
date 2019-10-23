@@ -2,12 +2,12 @@ import React from "react";
 import {shallow} from "enzyme";
 import WelcomeScreen from "./welcome-screen";
 
-it(`App is correctly rendered after relaunch`, () => {
+it(`Click handler called only once`, () => {
   const clickHandler = jest.fn();
   const app = shallow(<WelcomeScreen
-    time={0}
+    gameTime={0}
     errorCount={0}
-    onButtonClick={clickHandler}
+    onStartButtonClick={clickHandler}
   />);
 
   const startButton = app.find(`button`);
