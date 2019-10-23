@@ -3,12 +3,12 @@ import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 
 export const App = () => {
   const GameSettings = {
-    time: 5,
-    errorsCount: 3,
+    TIME: 5,
+    ERROR_COUNTS: 3,
   };
   return <WelcomeScreen
-    time={GameSettings.time}
-    errorCount={GameSettings.errorsCount}
+    time={GameSettings.TIME}
+    errorCount={GameSettings.ERROR_COUNTS}
   />;
 };
 
