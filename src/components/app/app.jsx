@@ -3,14 +3,14 @@ import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 
 const App = () => {
   const GameSettings = {
-    time: 5,
-    errorsCount: 3
+    TIME: 5,
+    ERROR_COUNT: 3
   };
   const onButtonClick = () => {};
 
   return <WelcomeScreen
-    time={GameSettings.time}
-    errorCount={GameSettings.errorsCount}
+    time={GameSettings.TIME}
+    errorCount={GameSettings.ERROR_COUNT}
     onButtonClick={onButtonClick}
   />;
 };
