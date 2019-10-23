@@ -17,21 +17,22 @@ const mock = {
 
 it(`User answer passed to callback is consistent with array of strings`, () => {
   const {question} = mock;
-  const userAnswers = [`rock`];
+  const expectAnswer = [`rock`];
   const preventDefault = jest.fn();
+  const handleAnswer = jest.fn();
 
   const wrapper = shallow(<GenreQuestionScreen
     question={question}
     screenIndex={0}
-    onAnswer={() =>{}}
+    onAnswer={handleAnswer}
   />);
 
   const form = wrapper.find(`form`);
-  const input = wrapper.find(`input`);
+  wrapper.find(`input`).forEach((input, i) => {
+    input.simulate(`change`, {target: {value: question.answers[i].genre}});
+  });
 
-  input.simulate(`onChange`);
   form.simulate(`submit`, {preventDefault});
-
-  expect(wrapper.state().userAnswers).toEqual(userAnswers);
   expect(preventDefault).toHaveBeenCalledTimes(1);
+  expect(handleAnswer).toHaveBeenCalledWith(expectAnswer);
 });

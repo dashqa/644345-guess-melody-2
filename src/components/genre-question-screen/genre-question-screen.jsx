@@ -106,7 +106,8 @@ class GenreQuestionScreen extends React.PureComponent {
 
   _handleSubmit(evt) {
     evt.preventDefault();
-    this.props.onAnswer(this.state.userAnswers);
+    const {onAnswer} = this.props;
+    onAnswer(this.state.userAnswers);
   }
 }
 

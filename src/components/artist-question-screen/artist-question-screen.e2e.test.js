@@ -20,22 +20,20 @@ const mock = {
 
 it(`User answer passed to callback is consistent with string`, () => {
   const {question} = mock;
-  const userAnswer = `John`;
-  const preventDefault = jest.fn();
+  const expectAnswer = `John`;
+  const handleAnswer = jest.fn();
 
   const wrapper = shallow(<ArtistQuestionScreen
     question={question}
     screenIndex={0}
-    onAnswer={() =>{}}
+    onAnswer={handleAnswer}
   />);
 
-  const form = wrapper.find(`form`);
-  const input = wrapper.find(`input`);
+  wrapper.find(`input`).forEach((input, i) => {
+    input.simulate(`change`, {target: {value: question.answers[i].artist}});
+  });
 
-  input.simulate(`click`);
-  form.simulate(`submit`, {preventDefault});
-
-  expect(wrapper.state().userAnswer).toEqual(userAnswer);
-  expect(preventDefault).toHaveBeenCalledTimes(1);
+  expect(handleAnswer).toHaveBeenCalledWith(expectAnswer);
+  expect(handleAnswer).toHaveBeenCalledTimes(1);
 });
 
