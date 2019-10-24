@@ -42,7 +42,7 @@ const ArtistQuestionScreen = ({question, screenIndex, onAnswer}) => {
         </div>
 
         <form className="game__artist">
-          {answers.map((answer, i) => {
+          {answers.map(({artist, picture}, i) => {
             return (
               <div
                 className="artist"
@@ -52,9 +52,9 @@ const ArtistQuestionScreen = ({question, screenIndex, onAnswer}) => {
                   className="artist__input visually-hidden"
                   type="radio"
                   name="answer"
-                  value={answer.artist}
+                  value={`answer-${i}`}
                   id={`answer-${i}`}
-                  onChange={(evt) => onAnswer(evt.target.value)}
+                  onChange={() => onAnswer(artist)}
                 />
                 <label
                   className="artist__name"
@@ -62,10 +62,10 @@ const ArtistQuestionScreen = ({question, screenIndex, onAnswer}) => {
                 >
                   <img
                     className="artist__picture"
-                    src={answer.picture}
-                    alt={answer.artist}
+                    src={picture}
+                    alt={artist}
                   />
-                  {answer.artist}
+                  {artist}
                 </label>
               </div>
             );

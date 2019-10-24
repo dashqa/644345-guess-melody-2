@@ -20,7 +20,6 @@ const mock = {
 
 it(`User answer passed to callback is consistent with string`, () => {
   const {question} = mock;
-  const expectAnswer = `John`;
   const handleAnswer = jest.fn();
 
   const wrapper = shallow(<ArtistQuestionScreen
@@ -31,9 +30,7 @@ it(`User answer passed to callback is consistent with string`, () => {
 
   wrapper.find(`input`).forEach((input, i) => {
     input.simulate(`change`, {target: {value: question.answers[i].artist}});
+    expect(handleAnswer).toHaveBeenCalledWith(question.answers[i].artist);
   });
-
-  expect(handleAnswer).toHaveBeenCalledWith(expectAnswer);
-  expect(handleAnswer).toHaveBeenCalledTimes(1);
 });
 

@@ -17,7 +17,6 @@ const mock = {
 
 it(`User answer passed to callback is consistent with array of strings`, () => {
   const {question} = mock;
-  const expectAnswer = [`rock`];
   const preventDefault = jest.fn();
   const handleAnswer = jest.fn();
 
@@ -28,11 +27,11 @@ it(`User answer passed to callback is consistent with array of strings`, () => {
   />);
 
   const form = wrapper.find(`form`);
-  wrapper.find(`input`).forEach((input, i) => {
-    input.simulate(`change`, {target: {value: question.answers[i].genre}});
+  wrapper.find(`input`).forEach((input) => {
+    input.simulate(`change`, {target: {value: true}});
   });
 
   form.simulate(`submit`, {preventDefault});
   expect(preventDefault).toHaveBeenCalledTimes(1);
-  expect(handleAnswer).toHaveBeenCalledWith(expectAnswer);
+  expect(handleAnswer).toHaveBeenCalledWith(question.answers.map(() => true));
 });

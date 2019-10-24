@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
     super(props);
+    const {answers} = this.props.question;
+
     this.state = {
-      userAnswers: [],
+      userAnswers: answers.map(() => false),
     };
 
     this._handleChange = this._handleChange.bind(this);
@@ -66,9 +68,9 @@ class GenreQuestionScreen extends React.PureComponent {
                       className="game__input visually-hidden"
                       type="checkbox"
                       name={`answer-${i}`}
-                      value={answer.genre}
+                      value={`answer-${i}`}
                       id={`answer-${i}`}
-                      onChange={this._handleChange}
+                      onChange={() => this._handleChange(i)}
                     />
                     <label
                       className="game__check"
@@ -88,26 +90,15 @@ class GenreQuestionScreen extends React.PureComponent {
     );
   }
 
-  _handleChange(evt) {
-    const checkedAnswers = this.state.userAnswers;
-    const selectedValue = evt.target.value;
-
-    if (evt.target.checked) {
-      checkedAnswers.push(selectedValue);
-    } else {
-      const valueIndex = checkedAnswers.indexOf(selectedValue);
-      checkedAnswers.splice(valueIndex, 1);
-    }
-
+  _handleChange(songIndex) {
     this.setState({
-      userAnswers: checkedAnswers
+      userAnswers: this.state.userAnswers.map((answer, i) => i === songIndex ? !answer : answer)
     });
   }
 
   _handleSubmit(evt) {
     evt.preventDefault();
-    const {onAnswer} = this.props;
-    onAnswer(this.state.userAnswers);
+    this.props.onAnswer(this.state.userAnswers);
   }
 }
 
