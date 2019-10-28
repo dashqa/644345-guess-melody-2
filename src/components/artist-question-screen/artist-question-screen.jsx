@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {FORM_PREFIX} from "../../constants";
 
 const ArtistQuestionScreen = ({question, screenIndex, onAnswer}) => {
   const {answers} = question;
@@ -46,19 +47,19 @@ const ArtistQuestionScreen = ({question, screenIndex, onAnswer}) => {
             return (
               <div
                 className="artist"
-                key={`${screenIndex}-answer-${i}`}
+                key={`${screenIndex}-${FORM_PREFIX}-${i}`}
               >
                 <input
                   className="artist__input visually-hidden"
                   type="radio"
                   name="answer"
-                  value={`answer-${i}`}
-                  id={`answer-${i}`}
+                  value={`${FORM_PREFIX}-${i}`}
+                  id={`${FORM_PREFIX}-${i}`}
                   onChange={() => onAnswer(artist)}
                 />
                 <label
                   className="artist__name"
-                  htmlFor={`answer-${i}`}
+                  htmlFor={`${FORM_PREFIX}-${i}`}
                 >
                   <img
                     className="artist__picture"
