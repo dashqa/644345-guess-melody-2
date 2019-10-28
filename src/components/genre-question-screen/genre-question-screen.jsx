@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {FORM_PREFIX} from "../../constants";
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -52,10 +51,12 @@ class GenreQuestionScreen extends React.PureComponent {
             onSubmit={this._handleSubmit}
           >
             {answers.map((answer, i) => {
+              const answerKey = `answer-${i}`;
+
               return (
                 <div
                   className="track"
-                  key={`${screenIndex}-${FORM_PREFIX}-${i}`}
+                  key={`${screenIndex}-${answerKey}`}
                 >
                   <button
                     className="track__button track__button--play"
@@ -68,14 +69,14 @@ class GenreQuestionScreen extends React.PureComponent {
                     <input
                       className="game__input visually-hidden"
                       type="checkbox"
-                      name={`${FORM_PREFIX}-${i}`}
-                      value={`${FORM_PREFIX}-${i}`}
-                      id={`${FORM_PREFIX}-${i}`}
+                      name={answerKey}
+                      value={answerKey}
+                      id={answerKey}
                       onChange={() => this._handleChange(i)}
                     />
                     <label
                       className="game__check"
-                      htmlFor={`${FORM_PREFIX}-${i}`}
+                      htmlFor={answerKey}
                     >
                           Отметить
                     </label>
