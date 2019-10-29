@@ -2,12 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import WelcomeScreen from './welcome-screen';
 
-it(`App correctly renders after relaunch`, () => {
+it(`Welcome screen correctly renders after relaunch`, () => {
   const tree = renderer
       .create(<WelcomeScreen
-        time={0}
+        gameTime={0}
         errorCount={0}
-        onButtonClick={() => {}}
+        onStartButtonClick={() => {}}
       />)
       .toJSON();
   expect(tree).toMatchSnapshot();

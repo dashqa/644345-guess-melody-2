@@ -39,12 +39,12 @@ exports[`App correctly renders after relaunch 1`] = `
   >
     <li>
       За 
-      5
+      0
        минут нужно ответить на все вопросы.
     </li>
     <li>
       Можно допустить 
-      3
+      0
        ошибки.
     </li>
   </ul>
