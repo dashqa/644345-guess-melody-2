@@ -16,22 +16,22 @@ class App extends React.PureComponent {
     this._handleUserClick = this._handleUserClick.bind(this);
 
     this.state = {
-      question: -1,
+      currentQuestion: -1,
     };
   }
 
   render() {
     const {questions} = this.props;
-    const {question} = this.state;
+    const {currentQuestion} = this.state;
 
     return (
       <section className={`game ${Type.ARTIST}`}>
 
-        {this.state.question !== -1 &&
+        {currentQuestion !== -1 &&
           <Header/>
         }
 
-        {this._getScreen(questions[question], this._handleUserClick)}
+        {this._getScreen(questions[currentQuestion], this._handleUserClick)}
       </section>
     );
   }
@@ -70,9 +70,9 @@ class App extends React.PureComponent {
 
   _handleUserClick() {
     const {questions} = this.props;
-    const {question} = this.state;
+    const {currentQuestion} = this.state;
 
-    this.setState({question: question + 1 >= questions.length ? -1 : question + 1});
+    this.setState({currentQuestion: currentQuestion + 1 >= questions.length ? -1 : currentQuestion + 1});
   }
 }
 
